@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Trips - AirLine Management System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="profile.html">My Profile</a></li>
+      <li><a href="trips.html" class="active">My Trips</a></li>
+      <li><a href="index.html">Logout</a></li>
+      <li class="welcome">Welcome, <span id="passenger_name" style="color: #4CAF50">Guest</span></li>
+    </ul>
+  </nav>
+
+  <!-- Trips Section -->
+  <section>
+    <h2>My Trips</h2>
+    <div class="tabs">
+      <button class="tablinks active" onclick="openTab(event, 'Upcoming')">Upcoming</button>
+      <button class="tablinks" onclick="openTab(event, 'Cancelled')">Cancelled</button>
+      <button class="tablinks" onclick="openTab(event, 'Completed')">Completed</button>
+    </div>
+
+    <!-- Upcoming Trips -->
+    <div id="Upcoming" class="tabcontent" style="display: block;">
+      <table>
+        <thead>
+          <tr>
+            <th>Flight Name</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Travel Date</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Static Rows -->
+          <tr>
+            <td>Flight A1</td>
+            <td>New York</td>
+            <td>London</td>
+            <td>2024-09-15</td>
+            <td>$500</td>
+          </tr>
+          <tr>
+            <td>Flight B2</td>
+            <td>Paris</td>
+            <td>Tokyo</td>
+            <td>2024-10-05</td>
+            <td>$750</td>
+          </tr>
+          <tr>
+            <td>Flight C3</td>
+            <td>Sydney</td>
+            <td>Dubai</td>
+            <td>2024-11-20</td>
+            <td>$600</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cancelled Trips -->
+    <div id="Cancelled" class="tabcontent">
+      <table>
+        <thead>
+          <tr>
+            <th>Flight Name</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Travel Date</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Static Rows -->
+          <tr>
+            <td>Flight D4</td>
+            <td>Berlin</td>
+            <td>Moscow</td>
+            <td>2024-07-10</td>
+            <td>$400</td>
+          </tr>
+          <tr>
+            <td>Flight E5</td>
+            <td>Rome</td>
+            <td>Beijing</td>
+            <td>2024-08-18</td>
+            <td>$650</td>
+          </tr>
+          <tr>
+            <td>Flight F6</td>
+            <td>Toronto</td>
+            <td>Madrid</td>
+            <td>2024-06-25</td>
+            <td>$550</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Completed Trips -->
+    <div id="Completed" class="tabcontent">
+      <table>
+        <thead>
+          <tr>
+            <th>Flight Name</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Travel Date</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Static Rows -->
+          <tr>
+            <td>Flight G7</td>
+            <td>Miami</td>
+            <td>Chicago</td>
+            <td>2024-05-12</td>
+            <td>$300</td>
+          </tr>
+          <tr>
+            <td>Flight H8</td>
+            <td>Delhi</td>
+            <td>Bangkok</td>
+            <td>2024-04-22</td>
+            <td>$450</td>
+          </tr>
+          <tr>
+            <td>Flight I9</td>
+            <td>Los Angeles</td>
+            <td>San Francisco</td>
+            <td>2024-03-30</td>
+            <td>$200</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- JavaScript for Tabs -->
+  <script>
+      // Retrieve the logged-in User ID from localStorage
+      const loggedInUserId = localStorage.getItem('loggedInUserId');
+
+      // Display the User ID if it exists
+      if (loggedInUserId) {
+        document.getElementById('passenger_name').textContent = loggedInUserId;
+      }
+  </script>
+  <script>
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+
+      // Hide all tab contents
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Remove "active" class from all tab links
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show current tab and add "active" class
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+</body>
+</html>

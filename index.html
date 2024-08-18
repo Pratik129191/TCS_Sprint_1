@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - AirLine Management System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+<!--      <li><a href="profile.html">My Profile</a></li>-->
+<!--      <li><a href="trips.html">My Trips</a></li>-->
+      <li><a href="index.html" class="active">Login</a></li>
+      <li class="welcome">Welcome, <span id="passenger_name" style="color: #4CAF50">Guest</span></li>
+    </ul>
+  </nav>
+
+  <!-- Login Form -->
+  <section class="login-section">
+    <h2>EasyGo - AMS Login</h2>
+
+    <!-- Error Message Div -->
+    <div style="color: red" id="error-message" class="error-message"></div>
+
+    <form onsubmit="return validateLogin()">
+      <div class="form-group">
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id" name="user_id" maxlength="5" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" maxlength="30" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Registration Link -->
+    <p>New User? <a href="registration.html">Register Yourself</a></p>
+  </section>
+
+  <!-- Internal JavaScript -->
+  <script>
+    // Static User Data
+    const users = [
+      { userId: '12345', password: 'password123' },
+      { userId: '54321', password: '123password' },
+      { userId: '11111', password: 'mypassword' }
+    ];
+
+    // Validate the login form
+    function validateLogin() {
+      const userId = document.getElementById('user_id').value;
+      const password = document.getElementById('password').value;
+      const errorMessageDiv = document.getElementById('error-message');
+      let errorMessage = "";
+
+      // User ID Validation
+      if (!/^\d{1,5}$/.test(userId)) {
+        errorMessage = "ID not valid";
+      }
+
+      // Password Validation
+      if (password.length < 6 || password.length > 30) {
+        errorMessage = errorMessage ? "Both ID/password not valid" : "Password not valid";
+      }
+
+      // Check against static users
+      const user = users.find(user => user.userId === userId);
+
+      if (!user) {
+        errorMessage = errorMessage ? "ID not valid" : "Both ID/password not valid";
+      } else if (user.password !== password) {
+        errorMessage = errorMessage ? "Password not valid" : "Both ID/password not valid";
+      }
+
+      // Display error message
+      if (errorMessage) {
+        errorMessageDiv.textContent = errorMessage;
+        return false;
+      }
+
+      // Store User ID in localStorage
+      localStorage.setItem('loggedInUserId', userId);
+
+      // If no errors, proceed to the home page
+      errorMessageDiv.textContent = "";
+      window.location.href = "home.html";
+      return false;
+    }
+
+  </script>
+</body>
+</html>

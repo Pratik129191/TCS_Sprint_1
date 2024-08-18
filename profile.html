@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - AirLine Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html" class="active">My Profile</a></li>
+            <li>
+                <a href="trips.html">My Trips</a>
+<!--                <ul class="dropdown">-->
+<!--                    <li><a href="upcoming.html">Upcoming</a></li>-->
+<!--                    <li><a href="cancelled.html">Cancelled</a></li>-->
+<!--                    <li><a href="completed.html">Completed</a></li>-->
+<!--                </ul>-->
+            </li>
+            <li><a href="index.html">Logout</a></li>
+            <li class="welcome">Welcome, <span id="passenger_name" style="color: #4CAF50">Guest</span></li>
+        </ul>
+    </nav>
+
+    <!-- Profile Section -->
+    <section>
+        <h2>My Profile</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="userid">User ID:</label>
+                <input type="text" id="userid" name="userid" value="john123" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="joh@123" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" value="John Doe" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="john.doe@example.com" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" value="+1234567890" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="123 Main St, City, Country" readonly>
+            </div>
+
+            <button type="button" id="editBtn">Edit</button>
+            <button type="submit" id="saveBtn" style="display:none;">Save</button>
+        </form>
+    </section>
+
+    <script>
+        const editBtn = document.getElementById('editBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const inputs = document.querySelectorAll('#profileForm input');
+
+        editBtn.addEventListener('click', function() {
+            inputs.forEach(input => input.removeAttribute('readonly'));
+            editBtn.style.display = 'none';
+            saveBtn.style.display = 'inline-block';
+        });
+
+        saveBtn.addEventListener('click', function() {
+            inputs.forEach(input => input.setAttribute('readonly', true));
+            editBtn.style.display = 'inline-block';
+            saveBtn.style.display = 'none';
+        });
+    </script>
+
+    <script>
+      // Retrieve the logged-in User ID from localStorage
+      const loggedInUserId = localStorage.getItem('loggedInUserId');
+
+      // Display the User ID if it exists
+      if (loggedInUserId) {
+        document.getElementById('passenger_name').textContent = loggedInUserId;
+      }
+    </script>
+</body>
+</html>

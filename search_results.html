@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search Results - AirLine Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="trips.html">My Trips</a></li>
+            <li><a href="logout.html">Logout</a></li>
+            <li class="welcome">Welcome, <span id="passenger_name">Guest</span>!!!</li>
+        </ul>
+    </nav>
+
+    <!-- Search Results Section -->
+    <section class="search-results-section">
+        <h2>Search Results</h2>
+
+        <!-- Container for Search Results -->
+        <div id="search-results">
+            <!-- Search results will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- JavaScript to Display Search Results -->
+    <script>
+        // Display logged-in user ID
+        const loggedInUserId = localStorage.getItem('loggedInUserId');
+        if (loggedInUserId) {
+            document.getElementById('passenger_name').textContent = loggedInUserId;
+        }
+
+        // Retrieve search criteria from localStorage
+        const searchCriteria = JSON.parse(localStorage.getItem('searchCriteria'));
+        console.log("Search Criteria:", searchCriteria);
+
+        // Ensure that `searchCriteria` is not null or undefined
+        if (searchCriteria) {
+            const filteredFlights = filterFlights(searchCriteria);
+            displaySearchResults(filteredFlights);
+        } else {
+            console.error("No search criteria found in localStorage.");
+        }
+
+        // Sample static flight data for demonstration
+        const flights = [
+            {
+                flightName: 'AirLine1',
+                origin: 'New York',
+                destination: 'Los Angeles',
+                travelDate: '09-15-2024',
+                price: '$300',
+                class: 'Economy'
+            },
+            {
+                flightName: 'AirLine2',
+                origin: 'San Francisco',
+                destination: 'Chicago',
+                travelDate: '2024-08-10',
+                price: '$250',
+                class: 'Business'
+            },
+            {
+                flightName: 'AirLine3',
+                origin: 'Miami',
+                destination: 'Dallas',
+                travelDate: '2024-07-05',
+                price: '$200',
+                class: 'Executive'
+            }
+        ];
+
+        // Filter flights based on search criteria
+        function filterFlights(criteria) {
+            return flights.filter(flight => {
+                return flight.origin === criteria.origin &&
+                    flight.destination === criteria.destination &&
+                    flight.travelDate === criteria.departureDate &&
+                    flight.class === criteria.class;
+            });
+        }
+
+        // Display the search results
+        function displaySearchResults() {
+            const resultsDiv = document.getElementById('search-results');
+            const filteredFlights = filterFlights(searchCriteria);
+
+            if (filteredFlights.length > 0) {
+                filteredFlights.forEach(flight => {
+                    const flightDiv = document.createElement('div');
+                    flightDiv.classList.add('flight-details');
+
+                    flightDiv.innerHTML = `
+                        <p><strong>Flight Name:</strong> ${flight.flightName}</p>
+                        <p><strong>Origin:</strong> ${flight.origin}</p>
+                        <p><strong>Destination:</strong> ${flight.destination}</p>
+                        <p><strong>Travel Date:</strong> ${flight.travelDate}</p>
+                        <p><strong>Price:</strong> ${flight.price}</p>
+                        <p><strong>Class:</strong> ${flight.class}</p>
+                    `;
+
+                    resultsDiv.appendChild(flightDiv);
+                });
+            } else {
+                resultsDiv.innerHTML = "<p>No flights available for the selected criteria.</p>";
+            }
+        }
+
+        // Call function to display search results
+        displaySearchResults();
+    </script>
+</body>
+</html>

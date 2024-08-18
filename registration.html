@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Registration - Airline Management System</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your existing CSS file -->
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="registration.html" class="active">Registration</a></li>
+            <li class="welcome">Welcome, <span id="passenger_name" style="color: #4CAF50">Guest</span></li>
+        </ul>
+    </nav>
+
+    <!-- Title -->
+    <header>
+        <h1>AirLine Management System</h1>
+    </header>
+    <section>
+        <h2>Passenger Registration</h2>
+        <div id="error-message" class="error"></div>
+        <form id="registration-form" onsubmit="return registerUser()">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" maxlength="50" required>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" maxlength="50" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" maxlength="100" rows="3" required></textarea>
+
+            <label for="contact-number">Contact Number:</label>
+            <input type="text" id="contact-number" name="contact-number" maxlength="10" required>
+
+            <button type="submit">Register</button>
+            <button type="reset">Reset</button>
+        </form>
+
+        <div id="acknowledgment" class="acknowledgment"></div>
+    </section>
+
+    <script>
+        function registerUser() {
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const dob = document.getElementById('dob').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const contactNumber = document.getElementById('contact-number').value;
+
+            const errorMessageDiv = document.getElementById('error-message');
+            const acknowledgmentDiv = document.getElementById('acknowledgment');
+
+            // Basic validation (e.g., check if contact number is numeric)
+            if (isNaN(contactNumber) || contactNumber.length !== 10) {
+                errorMessageDiv.textContent = "Contact Number should be a numeric value with 10 digits.";
+                return false; // Prevent form submission
+            }
+
+            // Generate Passenger ID (randomly between 10000 and 99999)
+            const passengerId = Math.floor(10000 + Math.random() * 90000);
+
+            // Generate Password (First four letters of first name + '@123')
+            const password = firstName.substring(0, 4) + "@123";
+
+            // Save the user details (You can save it in a database in a real application)
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push({
+                passengerId,
+                firstName,
+                lastName,
+                dob,
+                email,
+                address,
+                contactNumber,
+                password
+            });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert(
+                "Passenger ID: " + passengerId +
+                "\nPassword: " + password +
+                "\nKindly Note The Above For Future Use"
+            );
+
+            // Display acknowledgment message
+            // acknowledgmentDiv.innerHTML = `
+            //     <p>Passenger Registration is successful.</p>
+            //     <p>Passenger ID: <strong>${passengerId}</strong></p>
+            //     <p>Password: <strong>${password}</strong></p>
+            // `;
+
+            // Reset form and clear error message
+            document.getElementById('registration-form').reset();
+            errorMessageDiv.textContent = "";
+
+            window.location.href = "login.html";
+            return false; // Prevent form submission to keep SPA style
+        }
+    </script>
+</body>
+</html>

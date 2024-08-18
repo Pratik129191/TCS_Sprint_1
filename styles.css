@@ -1,0 +1,349 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+nav ul li a.active {
+    text-decoration: underline;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+nav ul li:hover .dropdown {
+    display: block;
+}
+
+.welcome {
+    margin-left: auto;
+    font-size: 1.1rem;
+}
+
+/* Header */
+header {
+    text-align: center;
+    background-color: #444;
+    color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Form Section */
+section {
+    margin: 0 auto;
+    width: 50%;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+label {
+    margin-bottom: .5rem;
+}
+
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/*select {*/
+/*    width: 100%;*/
+/*    padding: .5rem;*/
+/*    margin-bottom: 1rem;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 4px;*/
+/*}*/
+
+button {
+    grid-column: span 2;
+    padding: .7rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+
+/* Profile Section */
+section {
+    margin: 2rem auto;
+    width: 50%;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+input[readonly] {
+    background-color: #e9e9e9;
+    cursor: not-allowed;
+}
+
+button {
+    padding: .7rem 1.5rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#saveBtn {
+    background-color: #28a745;
+}
+
+#saveBtn:hover {
+    background-color: #218838;
+}
+
+/* Tabs Styles */
+.tabs {
+  overflow: hidden;
+  /*background-color: #f1f1f1;*/
+  background-color: #333333;
+  margin-top: 20px;
+}
+
+.tablinks {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tablinks:hover {
+  background-color: #218838;
+}
+
+.tablinks.active {
+  background-color: #4CAF50;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid chocolate;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  /*background-color: #f2f2f2;*/
+  background-color: bisque;
+}
+
+/* Login Section Styles */
+.login-section {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.login-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.login-section p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-section a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.login-section a:hover {
+  text-decoration: underline;
+}
+
+
+
+/*.registration-container {*/
+/*    background-color: white;*/
+/*    padding: 20px;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*    width: 400px;*/
+
+/*}*/
+/*.registration-container h2 {*/
+/*    text-align: center;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+/*.registration-container label {*/
+/*    display: block;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+/*.registration-container input[type="text"],*/
+/*.registration-container input[type="email"],*/
+/*.registration-container input[type="date"],*/
+/*.registration-container textarea {*/
+/*    width: 100%;*/
+/*    padding: 8px;*/
+/*    margin-bottom: 10px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 4px;*/
+/*}*/
+/*.registration-container button {*/
+/*    width: 100%;*/
+/*    padding: 10px;*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*.registration-container button:hover {*/
+/*    background-color: #45a049;*/
+/*}*/
+/*.registration-container .error {*/
+/*    color: red;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+/*.registration-container .acknowledgment {*/
+/*    text-align: center;*/
+/*    color: green;*/
+/*    margin-top: 20px;*/
+/*}*/
